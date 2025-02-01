@@ -71,13 +71,11 @@ class FAQ(models.Model):
         cached_data = cache.get(cache_key)
 
         if cached_data:
-            return cached_data  # Return cached translation if available
+            return cached_data
         
-        # Get the translation from the model fields or fallback to the original question
         translation = getattr(self, f"question_{lang}", self.question)
         
-        # Store the translation in cache
-        cache.set(cache_key, translation, timeout=3600)  # Cache for 1 hour
+        cache.set(cache_key, translation, timeout=3600)
         
         return translation
 
@@ -88,14 +86,12 @@ class FAQ(models.Model):
         """
         cache_key = f"faq_{self.id}_{lang}_answer"
         cached_data = cache.get(cache_key)
-
+        print("cached_data    :",cached_data)
         if cached_data:
             return cached_data
         
-        # Get the translation from the model fields or fallback to the original answer
         translation = getattr(self, f"answer_{lang}", self.answer)
         
-        # Store the translation in cache
         cache.set(cache_key, translation, timeout=3600)
         
         return translation
