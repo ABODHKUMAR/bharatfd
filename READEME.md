@@ -6,4 +6,5 @@
 
 
 
-http://127.0.0.1:8000/api/add_fag/
+http://127.0.0.1:8000/api/add_faq/
+http://127.0.0.1:8000/api/faq/
