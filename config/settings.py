@@ -129,27 +129,20 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Redis Cache Setup
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient"},
-    }
-}
+
 
 # CKEditor Config
 CKEDITOR_CONFIGS = {
     "default": {"toolbar": "full", "height": 300, "width": "100%"},
 }
 
-
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/0', 
+        'LOCATION': 'redis://default:ygQS2yaW89K0KNiOTiF3Lpnh5eS2o51j@redis-12851.c261.us-east-1-4.ec2.redns.redis-cloud.com:12851/0', 
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         },
     }
 }
+
