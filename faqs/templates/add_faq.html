@@ -21,6 +21,8 @@
       padding: 40px;
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
     }
     h2 {
       font-size: 28px;
@@ -43,9 +45,32 @@
     .btn-submit:hover {
       background-color: #3b7bec;
     }
+    .spinner-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      display: none;
+    }
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      color: white;
+    }
   </style>
 </head>
 <body>
+  <div class="spinner-overlay" id="spinner">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
   <div class="container">
     <h2 class="mb-4">Add New FAQ</h2>
     <form id="add-faq-form">
@@ -64,6 +89,7 @@
   <script>
     document.getElementById("add-faq-form").addEventListener("submit", function (e) {
       e.preventDefault();
+      document.getElementById("spinner").style.display = "flex";
       const question = document.getElementById("question").value;
       const answer = document.getElementById("answer").value;
 
@@ -85,6 +111,9 @@
       .catch(error => {
         console.error("Error:", error);
         alert("Failed to add FAQ.");
+      })
+      .finally(() => {
+        document.getElementById("spinner").style.display = "none";
       });
     });
   </script>
