@@ -13,8 +13,10 @@ def faq_list(request):
     lang = request.GET.get("lang", "en")
     faqs = FAQ.objects.all()
     
-    data = [{"question": faq.get_translation(lang), "answer": faq.get_translation(lang)} for faq in faqs]
+    data = [{"question": faq.get_translation(lang), 
+             "answer": faq.get_translation_answer(lang)} for faq in faqs]
     return Response(data)
+
 
 @api_view(["POST"])  
 def create_faq(request):

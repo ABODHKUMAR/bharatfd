@@ -150,7 +150,6 @@
                 <option value="es">Spanish</option>
                 <option value="fs">French</option>
                 <option value="de">German</option>
-                <!-- Add more languages as needed -->
             </select>
         </div>
 
@@ -178,7 +177,7 @@
                     .then(response => response.json())
                     .then(data => {
                         const faqList = document.getElementById("faq-list");
-                        faqList.innerHTML = ""; // Clear previous FAQ items
+                        faqList.innerHTML = "";
                         data.forEach((faq, index) => {
                             const faqItem = `
                                 <div class="accordion-item">

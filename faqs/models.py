@@ -16,11 +16,11 @@ class FAQ(models.Model):
     question_hi = models.TextField(blank=True, null=True)
     answer_hi = RichTextField(blank=True, null=True)
     
-    #Bangali
+    # Bengali
     question_bn = models.TextField(blank=True, null=True)
     answer_bn = RichTextField(blank=True, null=True)
 
-   # Spanish
+    # Spanish
     question_es = models.TextField(blank=True, null=True)  
     answer_es = RichTextField(blank=True, null=True)
     
@@ -28,7 +28,7 @@ class FAQ(models.Model):
     question_fr = models.TextField(blank=True, null=True)  
     answer_fr = RichTextField(blank=True, null=True)
     
-     # German
+    # German
     question_de = models.TextField(blank=True, null=True) 
     answer_de = RichTextField(blank=True, null=True)
 
@@ -67,7 +67,7 @@ class FAQ(models.Model):
         If the translation is not cached, it will fetch the translation, store it in the cache, and return it.
         """
         # Cache the translations for one hour (3600 seconds)
-        cache_key = f"faq_{self.id}_{lang}"
+        cache_key = f"faq_{self.id}_{lang}_question"
         cached_data = cache.get(cache_key)
 
         if cached_data:
@@ -78,6 +78,25 @@ class FAQ(models.Model):
         
         # Store the translation in cache
         cache.set(cache_key, translation, timeout=3600)  # Cache for 1 hour
+        
+        return translation
+
+    def get_translation_answer(self, lang):
+        """
+        This method retrieves the translated answer for a specific language.
+        If the translation is not cached, it will fetch the translation, store it in the cache, and return it.
+        """
+        cache_key = f"faq_{self.id}_{lang}_answer"
+        cached_data = cache.get(cache_key)
+
+        if cached_data:
+            return cached_data
+        
+        # Get the translation from the model fields or fallback to the original answer
+        translation = getattr(self, f"answer_{lang}", self.answer)
+        
+        # Store the translation in cache
+        cache.set(cache_key, translation, timeout=3600)
         
         return translation
 
