@@ -173,7 +173,7 @@
             loadFaqs("en");
 
             function loadFaqs(language) {
-                fetch(`/api/faqs/?lang=${language}`)
+                fetch(`https://bharatfd-fxmf.vercel.app/api/faqs/?lang=${language}`)
                     .then(response => response.json())
                     .then(data => {
                         const faqList = document.getElementById("faq-list");
