@@ -5,7 +5,7 @@ I forgot to remove it on my PC.
 
 # Run Backend
     1. cd faq_backend
-    2. 4. python manage.py makemigrations
+    2. python manage.py makemigrations
     3. python manage.py migrate
     4. python manage.py runserver # By default it will take 8000 port
 
@@ -46,7 +46,7 @@ Yes, I have used Redis caching functionality to fetch data from the cache if ava
 
 # Need changes 
 
-I direclty pushed redis URL to git, Once you see work.
+I direclty pushed redis URL to git, I will remove Once you see the work.
 
 # Seperate Module made for testing 
 No
